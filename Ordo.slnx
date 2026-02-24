@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Ordo.Core/Ordo.Core.csproj" />
+    <Project Path="src/Ordo/Ordo.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Ordo.Tests/Ordo.Tests.csproj" />
+  </Folder>
+</Solution>
