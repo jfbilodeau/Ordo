@@ -4,18 +4,18 @@ public class TodoManager
 {
     private readonly List<Todo> _todos = [];
 
-    public Todo Add(string name, DateTime dueDate)
+    public Todo add(string name, DateTime dueDate)
     {
         var todo = Todo.Create(name, dueDate);
         _todos.Add(todo);
         return todo;
     }
 
-    public bool Remove(Guid id) => _todos.RemoveAll(t => t.Id == id) > 0;
+    public bool remove(Guid id) => _todos.RemoveAll(t => t.Id == id) > 0;
 
-    public IEnumerable<Todo> List() => _todos.AsReadOnly();
+    public IEnumerable<Todo> list() => _todos.AsReadOnly();
 
-    public IEnumerable<Todo> SortByName() {
+    public IEnumerable<Todo> sort_by_name() {
         var i = new List<Todo>(_todos);
 
         if (i.Count <= 1)
@@ -52,5 +52,5 @@ public class TodoManager
         return i;
     }
 
-    public IEnumerable<Todo> SortByDate() => _todos.OrderBy(t => t.DueDate);
+    public IEnumerable<Todo> sort_by_date() => _todos.OrderBy(t => t.DueDate);
 }

@@ -4,11 +4,11 @@ using System.Linq;
 Console.WriteLine("Ordo - The MODERN Todo Manager");
 var manager = new TodoManager();
 // Seed with five sample todos
-manager.Add("Call Alice", DateTime.Today.AddDays(1));
-manager.Add("Finish report", DateTime.Today.AddDays(3));
-manager.Add("Pay bills", DateTime.Today.AddDays(7));
-manager.Add("Buy groceries", DateTime.Today);
-manager.Add("Plan trip", DateTime.Today.AddDays(14));
+manager.add("Call Alice", DateTime.Today.AddDays(1));
+manager.add("Finish report", DateTime.Today.AddDays(3));
+manager.add("Pay bills", DateTime.Today.AddDays(7));
+manager.add("Buy groceries", DateTime.Today);
+manager.add("Plan trip", DateTime.Today.AddDays(14));
 Console.WriteLine("(seeded 5 sample todos)");
 
 while (true)
@@ -41,44 +41,44 @@ while (true)
 				Console.WriteLine("Invalid date.");
 				break;
 			}
-			var added = manager.Add(name, due);
+			var added = manager.add(name, due);
 			Console.WriteLine($"Added: {added.Id} | {added.Name} | {added.DueDate:yyyy-MM-dd}");
 			break;
 
 		case "2":
-			PrintTodos(manager.List());
+			PrintTodos(manager.list());
 			Console.Write("Enter Id (GUID) or index to remove: ");
 			var input = Console.ReadLine();
 			if (string.IsNullOrWhiteSpace(input)) break;
 			if (int.TryParse(input, out var idx))
 			{
-				var todos = manager.List().ToList();
+				var todos = manager.list().ToList();
 				if (idx >= 0 && idx < todos.Count)
 				{
 					var id = todos[idx].Id;
-					var removed = manager.Remove(id);
+					var removed = manager.remove(id);
 					Console.WriteLine(removed ? "Removed." : "Not found.");
 				}
 				else Console.WriteLine("Index out of range.");
 			}
 			else if (Guid.TryParse(input, out var gid))
 			{
-				var removed = manager.Remove(gid);
+				var removed = manager.remove(gid);
 				Console.WriteLine(removed ? "Removed." : "Not found.");
 			}
 			else Console.WriteLine("Invalid input.");
 			break;
 
 		case "3":
-			PrintTodos(manager.List());
+			PrintTodos(manager.list());
 			break;
 
 		case "4":
-			PrintTodos(manager.SortByName());
+			PrintTodos(manager.sort_by_name());
 			break;
 
 		case "5":
-			PrintTodos(manager.SortByDate());
+			PrintTodos(manager.sort_by_date());
 			break;
 
 		case "0":
